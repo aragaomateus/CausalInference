@@ -1,0 +1,293 @@
+---
+title: "Problem Set 2"
+author: "Your Name - Net ID - Section Number "
+date: "Due Oct 26, 2022"
+output:
+  pdf_document: default
+header-includes: 
+  - \usepackage{tikz}
+---
+
+This homework must be turned in on Brightspace by Oct 26 2022. It must be your own work, and your own work only -- you must not copy anyone's work, or allow anyone to copy yours. This extends to writing code. You may consult with others, but when you write up, you must do so alone.
+
+Your homework submission must be written and submitted using Rmarkdown. No handwritten solutions will be accepted. You should submit:
+
+1.  A compiled PDF file named yourNetID_solutions.pdf containing your solutions to the problems.
+
+2.  A .Rmd file containing the code and text used to produce your compiled pdf named yourNetID_solutions.Rmd.
+
+Note that math can be typeset in Rmarkdown in the same way as Latex. Please make sure your answers are clearly structured in the Rmarkdown file:
+
+1.  Label each question part
+
+2.  Do not include written answers as code comments.
+
+3.  The code used to obtain the answer for each question part should accompany the written answer. Comment your code!
+
+\newpage
+
+# Problem 1 (25 Points Total)
+
+Consider the following Directed Acyclic Graph:
+
+```{=tex}
+\centering
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+
+% Text Node
+\draw (441.91,108.34) node    {$Y$};
+% Text Node
+\draw (325.56,177.49) node    {$X$};
+% Text Node
+\draw (323.26,108.34) node    {$M$};
+% Text Node
+\draw (322.95,28.63) node    {$Z$};
+% Text Node
+\draw (196.55,106.34) node    {$A$};
+% Connection
+\draw    (335.56,171.55) -- (430.69,115.01) ;
+\draw [shift={(432.41,113.99)}, rotate = 149.28] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw    (332.45,35) -- (430.75,100.87) ;
+\draw [shift={(432.41,101.98)}, rotate = 213.82] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw    (335.26,108.34) -- (430.41,108.34) ;
+\draw [shift={(432.41,108.34)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw    (315.56,171.98) -- (212.3,115.03) ;
+\draw [shift={(210.55,114.07)}, rotate = 28.88] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw    (322.99,40.63) -- (323.2,94.34) ;
+\draw [shift={(323.21,96.34)}, rotate = 269.78] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw    (210.55,106.56) -- (309.26,108.12) ;
+\draw [shift={(311.26,108.15)}, rotate = 180.9] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+% Connection
+\draw    (210.55,97.74) -- (311.74,35.52) ;
+\draw [shift={(313.45,34.47)}, rotate = 148.42] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+\end{tikzpicture}
+```
+\raggedright
+
+## Part A (15 points)
+
+Of the five variables in the graph, 2 are colliders and 3 are non-colliders. Which variables are colliders and which are non-colliders? Explain why?
+
+### Answer: 
+
+Variables M and Y are collider.
+
+Variables X, A and Z are non-colliders.
+
+M and Y are colliders because they have multiple causal paths pointing towards it.
+
+X, A and Z are non-colliders because they have at most1 causal path pointing towards it.
+
+## Part B (5 points)
+
+Suppose that we wanted to estimate the effect of $A$ on $Y$. Indicate if we should or should not condition on $X$, and why. Also, indicate if we should or should not condition on $Z$ and explain why or why not.
+
+### Answer: 
+
+We should condition on X because X is a cofounder in between A and Y.
+
+we can not condition on Z because Z is post treatment variable and it is not a cofounder in between A and Y.
+
+## Part C (5 points)
+
+Suppose that we wanted to estimate the effect of $M$ on $Y$. List all of the backdoor paths between $M$ and $Y$, and indicate which variable(s) we should condition on to close each path. There may be multiple valid options for each path.
+
+### Answer: 
+
+Back door paths:
+
+M \<-A \<-x -\>Y
+
+M \<-A -\>Z-\>Y
+
+We can control for Z.
+
+# Problem 2 (75 Points Total)
+
+Consider again the GOTV data from last problem set by Gerber, Green and Larimer (APSR, 2008). Although it is not specified in the paper, it is highly possible that the authors created subgroups based on the turnout history for 5 previous primary and general elections (number of times the individual voted), and number of registered voters in the household. In this problem, we will create subgroups based on the turnout history, and investigate the CATE (conditional average treatment effect) and the effect modifications in each subgroup. We denote the turnout history/number of times voted as a covariate $X_i$ for individual $i$.
+
+## Part A. Data Preparation (20 Points Total)
+
+Construct a new dataset for this problem using the individual level dataset provided below.
+
+1.  Create a new column $num\_voted$ to represent the number of times the individual has voted in previous 5 elections by summing the variables g2000, p2000, g2002, p2002 and p2004 (exclude g2004 because the experiment filtered out people who didn't vote in g2004), the resulting column should be an integer ranging from [0,5]. (5 points)
+
+    ```{r}
+    library("readxl")
+    GOTV <- read_excel("gotv_individual.xlsx")
+    GOTV
+    ```
+
+```{r}
+
+GOTV <- transform(GOTV, num_voted= g2000+ p2000 + g2002 + p2002 + p2004)
+min(GOTV$num_voted)
+max(GOTV$num_voted)
+```
+
+2.  In the following problems, we are using the individual data with $num_voted$ as different subgroups. To simplify the problem, we investigate only the \`\`Neighbor" treatment effect. Construct a cleaner dataset with ${id, hh\_id, hh\_size, num\_voted, voted, treatment}$ as columns and filter out treatment groups besides ${Neighbor, Control}$. (5 points)
+
+```{r}
+library(dplyr)
+neighbor_control = GOTV %>% filter(treatment=='Neighbors' | treatment=='Control' )
+neighbor_control = neighbor_control[ , c("treatment","hh_id", "hh_size","num_voted","voted")]     
+neighbor_control
+
+```
+
+3.  Construct a household-level dataset by taking the means of $hh\_size, num\_voted$, and $voted$ in each household (the other variables are all equal within the same household and can simply be left as they are). Round the mean of $num\_voted$ \textbf{up} to the nearest integer. Your resulting dataset should have one household per row, and $hh\_id$, $hh\_size$, $num\_voted$, $voted$, and $treatment$ as columns. The variable $num\_voted$ should have only values 0, 1, 2, 3, 4, 5. (5 points)
+
+```{r}
+
+neighbor_control_grouped  = neighbor_control %>% group_by(hh_id
+)  %>%
+                    summarise(treatment = max(treatment),
+                              hh_size = mean(hh_size),
+                              num_voted = mean(num_voted),
+                              voted = mean(voted),
+                              .groups = 'drop')
+neighbor_control_grouped <- transform(neighbor_control_grouped, num_voted= round(num_voted))
+neighbor_control_grouped
+```
+
+4.  Report number of households in each subgroup for both treatment and control, what do you observe? (5 points)
+
+    ### Answer: The control group is much larger than the treated group.
+
+```{r}
+neighbor_control_grouped %>% count(treatment)
+
+```
+
+## Part B. CATE for subgroups (25 points total)
+
+We define conditional average treatment effects as the ATE for different subgroups defined by the $num\_voted$ variable:
+
+$$ \tau(x) = E[Y_i(1)-Y_i(0)| X_i=x], x \in \{0,1,2,3,4,5\} $$
+
+Since treatment was randomized at the household level, positivity and ignorability hold both unconditionally, and conditionally, within each subgroup. For each subgroup:
+
+1.  Estimate the CATE and report the variance of your estimates. (5 points)
+
+```{r}
+library(tidyverse)
+#se <- sqrt(var(treated)/length(treated) + var(control)/length(control))
+cate_se <-function(group){
+  group %>% drop_na()
+  group_control = group %>% filter(treatment=='Control')
+  group_control= group_control$voted
+  group_treated = group %>% filter(treatment=='Neighbors')
+  group_treated = group_treated$voted
+  
+  se <- sqrt(var(group_treated)/length(group_treated) + var(group_control)/length(group_control))
+
+  cate = mean(group_treated) - mean(group_control)
+  output <- data.frame(cate =cate, se=se)
+  return(as_tibble(output))
+}
+
+group_0 = neighbor_control_grouped %>% filter(num_voted==0 )
+cate_se(group_0)
+
+group_1 = neighbor_control_grouped %>% filter(num_voted==1 )
+cate_se(group_1)
+
+group_2 = neighbor_control_grouped %>% filter(num_voted==2 )
+cate_se(group_2)
+
+group_3 = neighbor_control_grouped %>% filter(num_voted==3 )
+cate_se(group_3)
+
+group_4 = neighbor_control_grouped %>% filter(num_voted==4 )
+cate_se(group_4)
+
+group_5 = neighbor_control_grouped %>% filter(num_voted==5 )
+cate_se(group_5)
+
+
+
+
+
+
+```
+
+2.  Construct a 95% confidence interval around your estimates. (5 points)
+
+```{r}
+# A function to calculate the 95% confidence interval
+confidence <- function(group){
+  # Point Estimate
+  control = group %>% filter(treatment=='Control')
+  control= control$voted
+  treated = group %>% filter(treatment=='Neighbors')
+  treated = treated$voted
+  
+  point <- mean(treated) - mean(control)
+  
+  # Standard Error
+  se <- sqrt(var(treated)/length(treated) + var(control)/length(control))
+  
+  # Asymptotic 95% CI - how do we code this?
+  ci_95 <- c(point - qnorm(.975)*se,
+             point + qnorm(.975)*se)
+  
+  # P-value 
+  pval <- 2*pnorm(-abs(point/se))
+
+  # Return as a data frame
+  output <- data.frame( se = se, ci95Lower = ci_95[1],
+                       ci95Upper = ci_95[2], pvalue = pval)
+  
+  return(as_tibble(output))
+
+}
+confidence(group_0)
+confidence(group_1)
+confidence(group_2)
+confidence(group_3)
+confidence(group_4)
+confidence(group_5)
+
+```
+
+3.  What conclusion can you draw from these statistics? (15 points)
+
+```{r}
+
+```
+
+*You can skip subgroups that either do not have members in them or do not have any treated/control members*
+
+## Part C. Effect Modification (15 points total)
+
+Suppose we want to estimate whether these is a difference in effects for two extreme groups, individuals who always vote ($X_i=5$) and individuals who never vote ($X_i$=0), we construct an estimator $\hat\Delta$ to estimate the difference. We can estimate this difference as:
+
+$$\hat\Delta = \hat\tau(0) - \hat\tau(5) $$
+
+Calculate the variance of $\hat\Delta$ and construct a 95% confidence interval around it. Can we say that there's a significant difference in the treatment effect for people who always vote and people who never vote? (15 points)
+
+```{r}
+point <- cate_se(group_0)$cate - cate_se(group_5)$cate
+  
+  # Standard Error
+se <- sqrt(var(cate_se(group_0)$cate)/length(cate_se(group_0)$cate) + var(cate_se(group_5)$cate)/length(cate_se(group_5)$cate))
+  
+  # Asymptotic 95% CI - how do we code this?
+ci_95 <- c(point - qnorm(.975)*se,
+             point + qnorm(.975)*se)
+  
+  # P-value 
+pval <- 2*pnorm(-abs(point/se))
+
+cat(se)
+```
+
+## Part D (15 Points)
+
+In the experiment, the authors claimed no significant differences between groups, one possible reason may be that the sample size for each subgroup is too small. This is a practical problem we may encounter in experimental designs when we are testing multiple hypothesis or we are having too many subgroups. Explain in your own words why having more hypothesis/subgroups would make significant effect harder to detect for each group, assuming the overall sample size is fixed.
